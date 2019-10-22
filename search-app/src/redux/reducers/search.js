@@ -1,12 +1,15 @@
-import { SEARCH } from '../actionTypes';
+import {IS_FETCHING, SEARCH} from '../actionTypes';
 
 const initialState = {
-  results: []
+  results: [],
+  isFetching: false
 };
 
 export default function searchReducer(state = initialState, action) {
   switch (action.type) {
     case SEARCH: {
+      if (!action.payload.items) return state;
+
       return {
         ...state,
         results: action.payload.items.map(({
@@ -28,6 +31,9 @@ export default function searchReducer(state = initialState, action) {
         }))
       };
     }
+
+    case IS_FETCHING:
+      return { ...state, isFetching: action.payload };
 
     default:
       return state;

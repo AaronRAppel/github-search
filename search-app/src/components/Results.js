@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Results = ({ results }) => {
@@ -26,6 +27,18 @@ const Results = ({ results }) => {
       }
       </Table>
   );
+};
+
+Results.propTypes = {
+  results: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    description: PropTypes.string,
+    score: PropTypes.number,
+    stars: PropTypes.number,
+    language: PropTypes.string,
+    ownerName: PropTypes.string
+  }))
 };
 
 export default Results;
