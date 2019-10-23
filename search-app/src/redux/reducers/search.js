@@ -1,4 +1,4 @@
-import {IS_FETCHING, SEARCH} from '../actionTypes';
+import { IS_FETCHING, SEARCH } from '../actionTypes';
 
 const initialState = {
   results: [],
@@ -8,7 +8,7 @@ const initialState = {
 export default function searchReducer(state = initialState, action) {
   switch (action.type) {
     case SEARCH: {
-      if (!action.payload.items) return state;
+      if (!action.payload.items) return { ...state, results: [] };
 
       return {
         ...state,

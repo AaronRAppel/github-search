@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import * as searchActions from '../redux/actions/search';
@@ -8,6 +8,8 @@ import PropTypes from 'prop-types';
 const Search = ({ results, search, isFetching }) => {
   const [searchString, setSearchString] = useState('');
   const [sortBy, setSortBy] = useState('');
+  const searchInput = useRef(null);
+  useEffect(() => searchInput.current.focus(), []);
 
   return (
     <Wrapper>
@@ -16,7 +18,7 @@ const Search = ({ results, search, isFetching }) => {
       <SearchOptions>
         <Flex>
           <Subheading>Query Text:</Subheading>
-          <Input type="text" value={searchString} onChange={e => setSearchString(e.target.value)} />
+          <Input ref={searchInput} type="text" value={searchString} onChange={e => setSearchString(e.target.value)} />
         </Flex>
         <Flex>
           <Subheading>Sort By:</Subheading>
@@ -61,7 +63,7 @@ export default connect(mapStateToProps, {
 const Wrapper = styled.div`
   padding: 15px;
   background-color: aliceblue;
-  height: 100%;
+  min-height: 100vh;
 `;
 
 const SearchOptions = styled.div`

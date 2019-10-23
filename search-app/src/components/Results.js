@@ -7,8 +7,8 @@ const Results = ({ results }) => {
     <Table>
       <Header>
         <Col>Name</Col>
-        <Col>Description</Col>
-        <Col>Stars</Col>
+        <Col flex="2">Description</Col>
+        <Col flex=".6">Stars</Col>
         <Col>Language</Col>
         <Col>Owners Name</Col>
       </Header>
@@ -17,8 +17,8 @@ const Results = ({ results }) => {
           return (
             <Row key={result.id}>
               <Col>{result.name}</Col>
-              <Col>{result.description}</Col>
-              <Col>{result.stars}</Col>
+              <Col flex="2">{result.description}</Col>
+              <Col flex=".6">{result.stars}</Col>
               <Col>{result.language}</Col>
               <Col>{result.ownerName}</Col>
             </Row>

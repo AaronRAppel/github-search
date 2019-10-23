@@ -1,5 +1,7 @@
 import { IS_FETCHING, SEARCH } from '../actionTypes';
+import { addError, removeErrors } from './errors';
 
+const ERROR_TIMEOUT = 5000;
 const BASE_URL = 'http://localhost:8000';
 
 const isFetching = isFetching => ({
@@ -18,4 +20,9 @@ export const searchAsync = (text, sortBy) => async (dispatch) => {
   const json = await response.json();
   dispatch(search(json));
   dispatch(isFetching(false));
+
+  if (json.errors) {
+    dispatch(addError(json.message));
+    setTimeout(() => dispatch(removeErrors()), ERROR_TIMEOUT);
+  }
 };
